@@ -19,23 +19,14 @@ resource "aws_subnet" "web-subnet" {
   }
 }
 
-#api subnet
-resource "aws_subnet" "api-subnet" {
-  vpc_id     = aws_vpc.mytf-vpc.id
-  cidr_block = "10.0.2.0/24"
-  map_public_ip_on_launch  = "true"
+resource "aws_internet_gateway" "web_gw" {
+ vpc_id = aws_vpc.lms-vpc.id
 
-  tags = {
-    Name = "api-subnet"
-  }
+ tags = {
+   Name = "web_Internet_gw"
+ }
 }
 
-#db subnet
-resource "aws_subnet" "db-subnet" {
-  vpc_id     = aws_vpc.mytf-vpc.id
-  cidr_block = "10.0.3.0/24"
 
-  tags = {
-    Name = "db-subnet"
-  }
-}
+
+
